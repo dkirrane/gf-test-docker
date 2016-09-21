@@ -11,14 +11,6 @@ MAINTAINER Desmond Kirrane <dkirrane at avaya.com>
 
 ENV REFRESHED_AT 2016-SPET-21
 
-##
-# CA cert
-##
-   # RUN rm -rf /usr/share/ca-certificates
-# ADD zscaler/ZscalerRootCertificate-2048-SHA256.crt /usr/share/ca-certificates/ZscalerRootCertificate-2048-SHA256.crt
-# RUN apt-get -yq --fix-missing --reinstall install ca-certificates
-# RUN dpkg-reconfigure -f noninteractive ca-certificates
-
 ######################
 # Install
 ######################
