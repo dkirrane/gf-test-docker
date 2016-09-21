@@ -1,0 +1,14 @@
+######################################
+# Launch using ./run.sh
+######################################
+version: '2'
+services:
+
+  gitflow-test:
+    build:
+      context: .
+      args:
+        - MAVEN_VERSION=3.3.9
+        # - MAVEN_VERSION=3.0.5
+        - GITFLOW_VERSION=2.3
+    container_name: gitflow-test
