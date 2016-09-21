@@ -70,6 +70,7 @@ RUN ${PROJ_DIR}/clear-git-history.sh
 WORKDIR ${PROJ_DIR}
 
 # # Init
+RUN git config credential.https://github.com/dkirrane/gf-test.git ${GITHUB_USERNAME}
 RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
 
 # # # Feature
