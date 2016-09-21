@@ -10,6 +10,12 @@ function runCmd {
     return $status
 }
 
+read -r -p "Enter GitHub username>" username
+export GITHUB_USERNAME=username
+
+read -r -p "Enter GitHub password>" username
+export GITHUB_PASSWORD=password
+
 echo -e "\n\n"
 
 docker-compose down
