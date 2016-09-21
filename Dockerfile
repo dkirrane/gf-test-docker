@@ -57,6 +57,7 @@ RUN mvn dependency:resolve-plugins
 ARG GITFLOW_VERSION
 
 # Clean up and previous runs for this repo
+RUN chmod -Rf 777 *
 RUN /opt/gf-test/my-proj/clear-git-history.sh
 
 # Init
