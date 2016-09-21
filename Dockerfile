@@ -52,9 +52,9 @@ WORKDIR /opt
 RUN git clone https://github.com/dkirrane/gf-test.git
 
 WORKDIR /opt/gf-test/my-proj
-# RUN mvn dependency:go-offline
-# RUN mvn dependency:resolve
-# RUN mvn dependency:resolve-plugins
+RUN mvn dependency:go-offline
+RUN mvn dependency:resolve
+RUN mvn dependency:resolve-plugins
 
 ######################
 # Gitflow Commands
@@ -63,26 +63,26 @@ ARG GITFLOW_VERSION
 
 # Clean up and previous runs for this repo
 RUN chmod -Rf 777 *
-# RUN /opt/gf-test/my-proj/clear-git-history.sh
+RUN /opt/gf-test/my-proj/clear-git-history.sh
 
-# # Init
-# RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
+# Init
+RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
 
 # # Feature
-# RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:feature-start
-# RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:feature-finish
+RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:feature-start
+RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:feature-finish
 
-# # Release
-# RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:release-start
-# RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:release-finish
+# Release
+RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:release-start
+RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:release-finish
 
-# # Hotfix
-# RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:hotfix-start
-# RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:hotfix-finish
+# Hotfix
+RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:hotfix-start
+RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:hotfix-finish
 
-# # Support
-# RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:support-start
-# RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:support-tag
+# Support
+RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:support-start
+RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:support-tag
 
 CMD ["sleep", "30000000"]
 # CMD ["bash"]
