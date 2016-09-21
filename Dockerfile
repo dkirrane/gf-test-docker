@@ -50,9 +50,9 @@ WORKDIR /opt
 RUN git clone https://github.com/dkirrane/gf-test.git
 
 WORKDIR /opt/gf-test/my-proj
-RUN mvn dependency:go-offline
-RUN mvn dependency:resolve
-RUN mvn dependency:resolve-plugins
+# RUN mvn dependency:go-offline
+# RUN mvn dependency:resolve
+# RUN mvn dependency:resolve-plugins
 
 ######################
 # Gitflow Commands
