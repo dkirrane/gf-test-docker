@@ -44,8 +44,6 @@ ENV MAVEN_REPO /root/.m2/repository
 # Clone test Repo
 ######################
 # GitHub username password
-ENV GITHUB_USERNAME
-ENV GITHUB_PASSWORD
 RUN echo 'machine github.com login ${GITHUB_USERNAME} password ${GITHUB_PASSWORD}' > ~/.netrc
 
 WORKDIR /opt
