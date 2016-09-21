@@ -64,6 +64,12 @@ RUN mvn dependency:resolve-plugins
 ######################
 ARG GITFLOW_VERSION
 
+# Clean up and previous runs for this repo
+RUN clear-git-history.sh
+
+# Init
+RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
+
 # Feature
 RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:feature-start
 RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:feature-finish
