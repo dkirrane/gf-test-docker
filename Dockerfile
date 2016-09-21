@@ -79,4 +79,5 @@ RUN chmod -Rf 777 *
 # RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:support-start
 # RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:support-tag
 
-CMD ["bash"]
+CMD ["sleep", "30000000"]
+# CMD ["bash"]
