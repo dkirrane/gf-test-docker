@@ -45,8 +45,9 @@ ENV MAVEN_REPO /root/.m2/repository
 ######################
 WORKDIR /opt
 RUN git clone https://github.com/dkirrane/gf-test.git
+ENV PROJ_DIR=/opt/gf-test/my-proj
 
-WORKDIR /opt/gf-test/my-proj
+WORKDIR ${PROJ_DIR}
 RUN mvn dependency:go-offline
 RUN mvn dependency:resolve
 RUN mvn dependency:resolve-plugins
@@ -65,10 +66,11 @@ RUN git config --global user.name "${GITHUB_USERNAME}"
 
 # Clean up and previous runs for this repo
 RUN chmod -Rf 777 *
-RUN /opt/gf-test/my-proj/clear-git-history.sh
+RUN ${PROJ_DIR}/clear-git-history.sh
+WORKDIR ${PROJ_DIR}
 
 # # Init
-# RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
+RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
 
 # # # Feature
 # RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:feature-start
