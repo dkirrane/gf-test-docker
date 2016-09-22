@@ -4,9 +4,9 @@
 version: '2'
 services:
 
-  mvn-305:
-    image: maven:3.0.5-jdk-7
-    container_name: mvn-305
+  # mvn-305:
+  #   image: maven:3.0.5-jdk-7
+  #   container_name: mvn-305
 
   mvn-339:
     image: maven:3.3.9-jdk-7
