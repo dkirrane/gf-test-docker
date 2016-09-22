@@ -11,8 +11,6 @@ services:
         - MAVEN_VERSION=3.3.9
         # - MAVEN_VERSION=3.0.5
         - GITFLOW_VERSION=3.0-SNAPSHOT
-        - GITHUB_USERNAME=${GITHUB_USERNAME}
-        - GITHUB_PASSWORD=${GITHUB_PASSWORD}
     env_file:
       - github-variables.env
     container_name: gitflow-test
