@@ -73,7 +73,7 @@ ARG GITFLOW_VERSION
 RUN echo "GITFLOW_VERSION: ${GITFLOW_VERSION}"
 
 # Init
-RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
+# RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
 
 # # # Feature
 # RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:feature-start
