@@ -54,7 +54,7 @@ RUN mvn dependency:resolve-plugins
 
 ARG GITFLOW_VERSION
 ENV GITFLOW_VERSION ${GITFLOW_VERSION}
-RUN mvn dependency:get -Dartifact=com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}
+# RUN mvn dependency:get -Dartifact=com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}
 
 # GitHub username password
 ARG GITHUB_USERNAME
