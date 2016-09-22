@@ -13,4 +13,7 @@ services:
         - GITFLOW_VERSION=3.0-SNAPSHOT
     env_file:
       - github-variables.env
+    environment:
+     - GITHUB_USERNAME=${GITHUB_USERNAME}
+     - GITHUB_PASSWORD=${GITHUB_PASSWORD}
     container_name: gitflow-test

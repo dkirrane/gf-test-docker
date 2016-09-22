@@ -62,8 +62,8 @@ WORKDIR ${PROJ_DIR}
 # RUN mvn dependency:resolve-plugins
 
 # GitHub username password
-ARG GITHUB_USERNAME ${GITHUB_USERNAME}
-ARG GITHUB_PASSWORD ${GITHUB_PASSWORD}
+ARG GITHUB_USERNAME=${GITHUB_USERNAME}
+ARG GITHUB_PASSWORD=${GITHUB_PASSWORD}
 RUN echo "machine github.com login ${GITHUB_USERNAME} password ${GITHUB_PASSWORD}" > ~/.netrc
 RUN git config --global user.email "${GITHUB_USERNAME}"
 RUN git config --global user.name "${GITHUB_USERNAME}"
@@ -85,7 +85,7 @@ RUN echo "MAVEN_VERSION: ${MAVEN_VERSION}"
 RUN mvn --version
 
 # Download
-RUN mvn -U com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:download
+# RUN mvn -U com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:download
 
 # Init
 # RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
