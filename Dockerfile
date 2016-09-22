@@ -54,7 +54,7 @@ RUN mvn dependency:resolve-plugins
 
 ARG GITFLOW_VERSION
 ENV GITFLOW_VERSION ${GITFLOW_VERSION}
-RUN mvn dependency:get -Dartifact=com.dkirrane.maven.plugins:ggitflow-maven:${GITFLOW_VERSION}
+RUN mvn dependency:get -Dartifact=com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}
 
 # GitHub username password
 ARG GITHUB_USERNAME
@@ -64,9 +64,9 @@ RUN git config --global user.email "${GITHUB_USERNAME}"
 RUN git config --global user.name "${GITHUB_USERNAME}"
 
 # Clean up and previous runs for this repo
-RUN chmod -Rf 777 *
-RUN ${PROJ_DIR}/clear-git-history.sh
-WORKDIR ${PROJ_DIR}
+# RUN chmod -Rf 777 *
+# RUN ${PROJ_DIR}/clear-git-history.sh
+# WORKDIR ${PROJ_DIR}
 
 ######################
 # Gitflow Commands
@@ -74,7 +74,7 @@ WORKDIR ${PROJ_DIR}
 
 
 # # Init
-RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
+# RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
 
 # # # Feature
 # RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:feature-start
