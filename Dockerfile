@@ -52,10 +52,9 @@ RUN mvn dependency:go-offline
 RUN mvn dependency:resolve
 RUN mvn dependency:resolve-plugins
 
-######################
-# Gitflow Commands
-######################
 ARG GITFLOW_VERSION
+ENV GITFLOW_VERSION ${GITFLOW_VERSION}
+RUN mvn dependency:get -Dartifact=com.dkirrane.maven.plugins:ggitflow-maven:${GITFLOW_VERSION}
 
 # GitHub username password
 ARG GITHUB_USERNAME
@@ -68,6 +67,11 @@ RUN git config --global user.name "${GITHUB_USERNAME}"
 RUN chmod -Rf 777 *
 RUN ${PROJ_DIR}/clear-git-history.sh
 WORKDIR ${PROJ_DIR}
+
+######################
+# Gitflow Commands
+######################
+
 
 # # Init
 RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
