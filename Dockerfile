@@ -51,7 +51,7 @@ ENV MAVEN_OPTS=-Xmx1024m -Djavax.net.ssl.trustStore="${JAVA_HOME}/jre/lib/securi
 ######################
 # Clone test Repo
 ######################
-ENV CLONED_AT 2016-SPET-22
+ENV CLONED_AT 2016-SPET-23
 WORKDIR /opt
 RUN git clone https://github.com/dkirrane/gf-test.git
 ENV PROJ_DIR=/opt/gf-test/my-proj
