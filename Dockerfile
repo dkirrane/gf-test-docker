@@ -84,6 +84,8 @@ ADD certs/ca.pem /tmp/
 RUN ${JAVA_HOME}/bin/keytool -import -noprompt -file "/tmp/ca.pem" -alias ZscalerAlias -keystore ${JAVA_HOME}/jre/lib/security/cacerts -storepass changeit
 ENV MAVEN_OPTS=-Xmx1024m -Djavax.net.ssl.trustStore="${JAVA_HOME}/jre/lib/security/cacerts" -Djavax.net.ssl.trustStorePassword=changeit -Djavax.net.ssl.keyStore="${JAVA_HOME}/jre/lib/security/cacerts" -Djavax.net.ssl.keyStorePassword=changeit
 
+# Download
+RUN mvn -U com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:download
 
 # Init
 # RUN mvn -U com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
