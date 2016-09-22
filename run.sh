@@ -22,4 +22,5 @@ echo -e "\n\n"
 runCmd docker-compose up -d
 echo -e "\n\n"
 
-docker logs --follow gitflow-test
+# docker logs --follow gitflow-test
+docker exec -it gitflow-test bash
