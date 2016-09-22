@@ -70,6 +70,7 @@ RUN git config --global user.name "${GITHUB_USERNAME}"
 # Gitflow Commands
 ######################
 ARG GITFLOW_VERSION
+ENV GITFLOW_VERSION=${GITFLOW_VERSION}
 RUN echo "GITFLOW_VERSION: ${GITFLOW_VERSION}"
 
 ARG MAVEN_VERSION
