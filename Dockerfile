@@ -5,7 +5,7 @@
 # docker run -it --name="mvngit" dockercelite_mvngit
 # docker rm -f mvngit
 #
-FROM maven:3.3.9-jdk-7
+FROM maven:3.3.9-jdk-7-onbuild
 
 MAINTAINER Desmond Kirrane <dkirrane at avaya.com>
 
