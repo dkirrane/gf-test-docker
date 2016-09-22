@@ -16,7 +16,8 @@ docker-compose down
 
 echo -e "\n\n"
 
-runCmd docker-compose build --no-cache --force-rm
+# runCmd docker-compose build --no-cache --force-rm
+runCmd docker-compose build --force-rm
 
 echo -e "\n\n"
 runCmd docker-compose up -d
