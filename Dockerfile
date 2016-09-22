@@ -53,13 +53,9 @@ RUN mvn dependency:go-offline
 RUN mvn dependency:resolve
 RUN mvn dependency:resolve-plugins
 
-ARG GITFLOW_VERSION
-ENV GITFLOW_VERSION ${GITFLOW_VERSION}
-# RUN mvn dependency:get -Dartifact=com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}
-
 # GitHub username password
-ARG GITHUB_USERNAME
-ARG GITHUB_PASSWORD
+ENV GITHUB_USERNAME ${GITHUB_USERNAME}
+ENV GITHUB_PASSWORD ${GITHUB_PASSWORD}
 RUN echo "machine github.com login ${GITHUB_USERNAME} password ${GITHUB_PASSWORD}" > ~/.netrc
 RUN git config --global user.email "${GITHUB_USERNAME}"
 RUN git config --global user.name "${GITHUB_USERNAME}"
@@ -72,7 +68,7 @@ RUN git config --global user.name "${GITHUB_USERNAME}"
 ######################
 # Gitflow Commands
 ######################
-
+ENV GITFLOW_VERSION ${GITFLOW_VERSION}
 
 # # Init
 # RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
