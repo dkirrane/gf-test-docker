@@ -5,11 +5,11 @@
 # docker run -it --name="mvngit" dockercelite_mvngit
 # docker rm -f mvngit
 #
-FROM ubuntu:14.04.2
+FROM maven:3.3.9-jdk-7
 
 MAINTAINER Desmond Kirrane <dkirrane at avaya.com>
 
-ENV REFRESHED_AT 2016-SPET-21
+ENV REFRESHED_AT 2016-SPET-22
 
 ######################
 # Install
@@ -18,31 +18,32 @@ RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -yq wget curl supervisor unzip git \
     && apt-get clean
 
-######################
-# Install Java 7
-######################
-RUN apt-get install software-properties-common -y && add-apt-repository ppa:webupd8team/java -y
-RUN echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq oracle-java7-installer
-RUN update-java-alternatives -s java-7-oracle
-ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
+# ######################
+# # Install Java 7
+# ######################
+# RUN apt-get install software-properties-common -y && add-apt-repository ppa:webupd8team/java -y
+# RUN echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+# RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq oracle-java7-installer
+# RUN update-java-alternatives -s java-7-oracle
+# ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
 
-######################
-# Install Maven
-######################
-ARG MAVEN_VERSION
+# ######################
+# # Install Maven
+# ######################
+# ARG MAVEN_VERSION
 
-RUN curl --insecure https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | tar xzf - -C /usr/share \
-  && mv /usr/share/apache-maven-${MAVEN_VERSION} /usr/share/maven \
-  && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
+# RUN curl --insecure https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | tar xzf - -C /usr/share \
+#   && mv /usr/share/apache-maven-${MAVEN_VERSION} /usr/share/maven \
+#   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
-ENV M2_HOME /usr/share/maven
-ENV MAVEN_OPTS -Xms1024m -Xmx1024m -XX:PermSize=1024m
-ENV MAVEN_REPO /root/.m2/repository
+# ENV M2_HOME /usr/share/maven
+# ENV MAVEN_OPTS -Xms1024m -Xmx1024m -XX:PermSize=1024m
+# ENV MAVEN_REPO /root/.m2/repository
 
 ######################
 # Clone test Repo
 ######################
+ENV CLONED_AT 2016-SPET-22
 WORKDIR /opt
 RUN git clone https://github.com/dkirrane/gf-test.git
 ENV PROJ_DIR=/opt/gf-test/my-proj
