@@ -72,6 +72,8 @@ RUN git config --global user.name "${GITHUB_USERNAME}"
 ARG GITFLOW_VERSION
 RUN echo "GITFLOW_VERSION: ${GITFLOW_VERSION}"
 
+RUN mvn --version
+
 # Init
 # RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
 
