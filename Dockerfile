@@ -77,6 +77,14 @@ ARG MAVEN_VERSION
 RUN echo "MAVEN_VERSION: ${MAVEN_VERSION}"
 RUN mvn --version
 
+##
+# Java - keytool import CA cert
+##
+ADD zscaler/ca.pem /tmp/
+RUN ${JAVA_HOME}/bin/keytool -import -noprompt -file "/tmp/ca.pem" -alias ZscalerAlias -keystore ${JAVA_HOME}/jre/lib/security/cacerts -storepass changeit
+ENV MAVEN_OPTS=-Xmx1024m -Djavax.net.ssl.trustStore="${JAVA_HOME}/jre/lib/security/cacerts" -Djavax.net.ssl.trustStorePassword=changeit -Djavax.net.ssl.keyStore="${JAVA_HOME}/jre/lib/security/cacerts" -Djavax.net.ssl.keyStorePassword=changeit
+
+
 # Init
 # RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
 
