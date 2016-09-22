@@ -16,7 +16,7 @@ ENV REFRESHED_AT 2016-SPET-22
 # Install
 ######################
 RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -yq wget curl supervisor unzip git \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -yq git \
     && apt-get clean
 
 # ######################
