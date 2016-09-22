@@ -62,8 +62,8 @@ WORKDIR ${PROJ_DIR}
 # RUN mvn dependency:resolve-plugins
 
 # GitHub username password
-ENV GITHUB_USERNAME ${GITHUB_USERNAME}
-ENV GITHUB_PASSWORD ${GITHUB_PASSWORD}
+ARG GITHUB_USERNAME ${GITHUB_USERNAME}
+ARG GITHUB_PASSWORD ${GITHUB_PASSWORD}
 RUN echo "machine github.com login ${GITHUB_USERNAME} password ${GITHUB_PASSWORD}" > ~/.netrc
 RUN git config --global user.email "${GITHUB_USERNAME}"
 RUN git config --global user.name "${GITHUB_USERNAME}"
