@@ -6,6 +6,7 @@
 # docker rm -f mvngit
 #
 FROM maven:3.3.9-jdk-7
+# FROM maven:3.0.5-jdk-7
 
 MAINTAINER Desmond Kirrane <dkirrane at avaya.com>
 
@@ -49,9 +50,9 @@ RUN git clone https://github.com/dkirrane/gf-test.git
 ENV PROJ_DIR=/opt/gf-test/my-proj
 
 WORKDIR ${PROJ_DIR}
-RUN mvn dependency:go-offline
-RUN mvn dependency:resolve
-RUN mvn dependency:resolve-plugins
+# RUN mvn dependency:go-offline
+# RUN mvn dependency:resolve
+# RUN mvn dependency:resolve-plugins
 
 # GitHub username password
 ENV GITHUB_USERNAME ${GITHUB_USERNAME}
@@ -70,8 +71,8 @@ RUN git config --global user.name "${GITHUB_USERNAME}"
 ######################
 ENV GITFLOW_VERSION ${GITFLOW_VERSION}
 
-# # Init
-# RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
+# Init
+RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
 
 # # # Feature
 # RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:feature-start
