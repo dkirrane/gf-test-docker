@@ -41,6 +41,13 @@ RUN apt-get update \
 # ENV MAVEN_OPTS -Xms1024m -Xmx1024m -XX:PermSize=1024m
 # ENV MAVEN_REPO /root/.m2/repository
 
+# ######################
+# Java - keytool import CA cert
+# ######################
+ADD certs/ca.pem /tmp/
+RUN ${JAVA_HOME}/bin/keytool -import -noprompt -file "/tmp/ca.pem" -alias ZscalerAlias -keystore ${JAVA_HOME}/jre/lib/security/cacerts -storepass changeit
+ENV MAVEN_OPTS=-Xmx1024m -Djavax.net.ssl.trustStore="${JAVA_HOME}/jre/lib/security/cacerts" -Djavax.net.ssl.trustStorePassword=changeit -Djavax.net.ssl.keyStore="${JAVA_HOME}/jre/lib/security/cacerts" -Djavax.net.ssl.keyStorePassword=changeit
+
 ######################
 # Clone test Repo
 ######################
@@ -77,18 +84,11 @@ ARG MAVEN_VERSION
 RUN echo "MAVEN_VERSION: ${MAVEN_VERSION}"
 RUN mvn --version
 
-##
-# Java - keytool import CA cert
-##
-ADD certs/ca.pem /tmp/
-RUN ${JAVA_HOME}/bin/keytool -import -noprompt -file "/tmp/ca.pem" -alias ZscalerAlias -keystore ${JAVA_HOME}/jre/lib/security/cacerts -storepass changeit
-ENV MAVEN_OPTS=-Xmx1024m -Djavax.net.ssl.trustStore="${JAVA_HOME}/jre/lib/security/cacerts" -Djavax.net.ssl.trustStorePassword=changeit -Djavax.net.ssl.keyStore="${JAVA_HOME}/jre/lib/security/cacerts" -Djavax.net.ssl.keyStorePassword=changeit
-
 # Download
 RUN mvn -U com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:download
 
 # Init
-# RUN mvn -U com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
+# RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:init
 
 # # # Feature
 # RUN mvn com.dkirrane.maven.plugins:ggitflow-maven-plugin:${GITFLOW_VERSION}:feature-start
