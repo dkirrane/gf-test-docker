@@ -13,7 +13,7 @@ function runCmd {
 read -r -p "Enter GitHub username>" username
 export GITHUB_USERNAME=${username}
 
-read -r -p "Enter GitHub password>" username
+read -r -p "Enter GitHub password>" password
 export GITHUB_PASSWORD=${password}
 
 echo -e "\n\n"
