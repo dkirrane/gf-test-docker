@@ -68,10 +68,12 @@ RUN echo "machine github.com login ${GITHUB_USERNAME} password ${GITHUB_PASSWORD
 RUN git config --global user.email "${GITHUB_USERNAME}"
 RUN git config --global user.name "${GITHUB_USERNAME}"
 
-# Clean up and previous runs for this repo
-# RUN chmod -Rf 777 *
-# RUN ${PROJ_DIR}/clear-git-history.sh
-# WORKDIR ${PROJ_DIR}
+######################
+# Clean up and previous Gitflow runs on this repo
+######################
+RUN chmod -Rf 777 *
+RUN ${PROJ_DIR}/clear-git-history.sh
+WORKDIR ${PROJ_DIR}
 
 ######################
 # Gitflow Commands
